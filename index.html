@@ -67,7 +67,7 @@
 
 		var allDim = data.dimension(function(d){return d;});			
         var cityGroup = cityDim.group().reduce(reduceAdd("pop_density"),reduceRemove("pop_density"), reduceInit);
-				console.log(JSON.stringify(cityGroup.top(Infinity)))
+	
 				
 			
       d3.json("data/admin_level_6.geojson", function (MuniCities) {   
