@@ -53,8 +53,8 @@ d3.csv("data/Population density.csv", function makeGraphs(error, records) {
 			numberFormat2 = d3.format(",");
 		var ChoroplethChart = dc.leafletChoroplethChart("#Choropleth-Chart");
         var data = crossfilter(records);
-		var cityDim = data.dimension(function (d) {
-           return d["City"];});
+		var cityProvinceDim = data.dimension(function (d) {
+           return [d["City"],d["Province"]];});
 		var allDim = data.dimension(function(d){return d;});			
         var cityGroup = cityDim.group().reduce(reduceAdd("pop_density"),reduceRemove("pop_density"), reduceInit);
 	console.log(JSON.stringify(cityGroup.top(Infinity)))
@@ -73,10 +73,10 @@ d3.csv("data/Population density.csv", function makeGraphs(error, records) {
 			.calculateColorDomain([0,100000])
             .geojson(MuniCities.features)
             .featureKeyAccessor(function(feature) {
-				return feature.properties.NAME_2;
+				return [feature.properties.NAME_2, feature.properties.NAME_1];
                         })
                         .title(function (d) {
-                            return "City: " + d.key + "\n\n Population Density: " + d.value.sums + " Color Value:" + numberFormat(Math.log(d.value.sums)*10)
+                            return "City: " + d.key[0] + "\n\n Provice" + d.key[1] + "\n\n Population Density: " + d.value.sums + " Color Value:" + numberFormat(Math.log(d.value.sums)*10)
                         })
                         .legend(dc.leafletLegend().position('bottomright'));
 			
