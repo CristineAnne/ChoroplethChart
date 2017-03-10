@@ -57,7 +57,7 @@ d3.csv("data/Population density.csv", function makeGraphs(error, records) {
            return [d["City"],d["Province"]];});
 		var allDim = data.dimension(function(d){return d;});			
         var cityProvinceGroup = cityProvinceDim.group().reduce(reduceAdd("pop_density"),reduceRemove("pop_density"), reduceInit);
-	console.log(JSON.stringify(cityGroup.top(Infinity)))
+	console.log(JSON.stringify(cityProvinceGroup.top(Infinity)))
 				
 			
       d3.json("data/data.json", function (MuniCities) {   
