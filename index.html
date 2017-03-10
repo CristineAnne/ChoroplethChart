@@ -44,6 +44,10 @@
 		
 d3.csv("data/Population density.csv", function makeGraphs(error, records) {
      console.log(error);
+	records.forEach(function(d){
+		d["pop_density"] = +d["pop_density"];
+    });
+
 	// Add and count values of a column						
         var numberFormat = d3.format(".2f"),
 			numberFormat2 = d3.format(",");
