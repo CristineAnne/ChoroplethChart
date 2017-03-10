@@ -56,7 +56,7 @@ d3.csv("data/Population density.csv", function makeGraphs(error, records) {
 		var cityProvinceDim = data.dimension(function (d) {
            return [d["City"],d["Province"]];});
 		var allDim = data.dimension(function(d){return d;});			
-        var cityGroup = cityDim.group().reduce(reduceAdd("pop_density"),reduceRemove("pop_density"), reduceInit);
+        var cityProvinceGroup = cityProvinceDim.group().reduce(reduceAdd("pop_density"),reduceRemove("pop_density"), reduceInit);
 	console.log(JSON.stringify(cityGroup.top(Infinity)))
 				
 			
@@ -66,8 +66,8 @@ d3.csv("data/Population density.csv", function makeGraphs(error, records) {
             .height(800)
             .center([14.54, 121.04])
             .zoom(5)
-            .dimension(cityDim)
-            .group(cityGroup)
+            .dimension(cityProvinceDim)
+            .group(cityProvinceGroup)
 			.colors(["#fcfbfd", "#efedf5", "#dadaeb", "#bcbddc", "#9e9ac8", "#807dba", "#6a51a3", "#54278f", "#3f007d"])
 			.colorAccessor(function(d) {return (Math.log(d.value.sums)*10);})
 			.calculateColorDomain([0,100000])
