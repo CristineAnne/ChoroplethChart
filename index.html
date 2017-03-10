@@ -65,7 +65,7 @@ d3.csv("data/Population density.csv", function makeGraphs(error, records) {
             .width(1200)
             .height(800)
             .center([14.54, 121.04])
-            .zoom(5)
+            .zoom(6)
             .dimension(cityProvinceDim)
             .group(cityProvinceGroup)
 			.colors(["#fcfbfd", "#efedf5", "#dadaeb", "#bcbddc", "#9e9ac8", "#807dba", "#6a51a3", "#54278f", "#3f007d"])
@@ -76,7 +76,7 @@ d3.csv("data/Population density.csv", function makeGraphs(error, records) {
 				return [feature.properties.NAME_2, feature.properties.NAME_1];
                         })
                         .title(function (d) {
-                            return "City: " + d.key[0] + "\n\n Provice" + d.key[1] + "\n\n Population Density: " + d.value.sums + " Color Value:" + numberFormat(Math.log(d.value.sums)*10)
+                            return "City: " + d.key[0] + "\n\n Provice: " + d.key[1] + "\n\n Population Density: " + d.value.sums + " Color Value:" + numberFormat(Math.log(d.value.sums)*10)
                         })
                         .legend(dc.leafletLegend().position('bottomright'));
 			
